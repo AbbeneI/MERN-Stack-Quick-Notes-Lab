@@ -11,6 +11,17 @@ export async function signUp(userData) {
   return getUser();
 }
 
+export async function login(credentials) {
+  try {
+    const token = await usersAPI.login(credentials);
+    localStorage.setItem('token', token)
+    return getUser()
+  }
+  catch {
+    throw new Error('Bad Credentials')
+  }
+}
+
 export function logOut() {
   localStorage.removeItem('token');
 }
