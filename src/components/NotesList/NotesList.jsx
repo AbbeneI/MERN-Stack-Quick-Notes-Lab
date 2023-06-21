@@ -1,11 +1,11 @@
 import { Component } from 'react';
-import './NoteslLst.css';
+import './NoteslList.css';
 
 export default class NotesList extends Component {
     render() {
         return (
             <div className="notes-list">
-                
+
             </div >
         );
     }

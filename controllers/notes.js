@@ -1,25 +1,26 @@
-const Note = require('../../models/notes');
+const Note = require('../models/note');
 
 module.exports = {
     createNote
 };
 
-async function createNote() {
-    const note = await Note.findById(req.params.id);
+async function createNote(req, res) {
+    console.log('\nreq.body', req.body)
+    const newNote = {
+        text: req.body.text,
+        user: req.body.user
+    }
+    console.log('\nnewnote', newNote)
 
-    // req.body.user = req.user._id;
-    // req.body.userName = req.user.name;
-    // req.body.userAvatar = req.user.avatar;
 
-    // We can push (or unshift) subdocs into Mongoose arrays
-
-    note.reviews.push(req.body);
+    const note = await Note.create(newNote);
     try {
         // Save any changes made to the movie doc
         await note.save();
+        res.json(note);
+
     } catch (err) {
-        console.log(err);
+        res.json(err);
     }
     // Step 5:  Respond to the Request (redirect if data has been changed)
-    res.redirect(`/notes`);
 }

@@ -4,7 +4,6 @@ const notesCtrl = require('../../controllers/notes');
 
 
 // POST /api/users (create a user - sign up)
-router.post('/notes/new', notesCtrl.createNote);
-// router.post('/login', usersCtrl.login)
+router.post('/', notesCtrl.createNote);
 
 module.exports = router;
